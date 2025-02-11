@@ -28,6 +28,10 @@ const PRETTY_RARE: ItemConf = {
     stop: 6
 }
 
+const DESTROY: ItemConf = {
+    destroy: true
+}
+
 const UPGRADE_TO_7_WITH_UP_SCROLL_TO_8: ItemConf = {
     upscroll: 7
 }
@@ -53,12 +57,9 @@ const RARE_COMPOUND: ItemConf = {
     offering: 0
 }
 
-export class Items  {
+export type UpgradeConfig = {[T in ItemName]?: ItemConf}
 
-    static DISMANTLE_ITEMS: ItemName[] = [
-        'firebow', 
-        'lostearring'
-    ]
+export class Items  {
 
     static ITEMS_TO_SALE: ItemName[] = [
         //materials
@@ -161,12 +162,11 @@ export class Items  {
         
     ]
 
-
-    static ITEMS_TO_UPGRADE : {
-        [T in ItemName]?: ItemConf
-    } = {
+    static ITEMS_TO_UPGRADE : UpgradeConfig = {
         //begginers shit
         // helmet: {level: 8, up: 7},
+        firebow: DESTROY,
+        lostearring: DESTROY,
         wcap: BASE,
         // coat: {level: 8},
         wattire: BASE,
@@ -248,9 +248,7 @@ export class Items  {
         lmace: RARE
     } 
 
-    static JEWELRY_TO_UPGRADE : {
-        [T in ItemName]? : ItemConf
-    } =
+    static JEWELRY_TO_UPGRADE : UpgradeConfig =
     {
         strbelt: BASE_COMPOUND,
         intbelt: BASE,
